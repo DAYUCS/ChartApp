@@ -1,14 +1,17 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Tap Me
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <div>
+    <p align="center">{{tapCounter}}</p>
+  </div>
+  <ion-buttons>
+    <button ion-button block (click)="buttonTapped()">Tap me!</button>
+    <button ion-button block (click)="reset()">Reset</button>
+  </ion-buttons>
 </ion-content>

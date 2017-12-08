@@ -23,9 +23,9 @@ export class QuotesListPage {
 
   constructor(public navController: NavController, public navParams: NavParams, public http:HttpClient) {
     this.isfiltered = false;
-    this.http.get('quotes.json').subscribe(data => {
+    this.http.get('http://10.39.107.101:9080/rest/invoice').subscribe(data => {
       // Read the result field from the JSON response.
-      this.quotesList = data['quotes'];
+      this.quotesList = data;
     },
     err => console.log("error is "+err), // error
     () => console.log('read quotes Complete '+ this.quotesList) // complete
@@ -39,7 +39,7 @@ export class QuotesListPage {
   searchQuotes(event) {
 		if(event.target.value.length > 2) {
       var filteredJson = this.quotesList.filter(function (row) {
-        if(row.author.indexOf(event.target.value) != -1) {
+        if(row.referenceNumber.indexOf(event.target.value) != -1) {
           return true
         } else {
           return false;

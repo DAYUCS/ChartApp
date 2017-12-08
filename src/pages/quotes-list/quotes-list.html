@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Quotes List</ion-title>
+    <ion-title>Invoice List</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,20 +15,22 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-input type="text" placeholder="Search Quotes..." (input)="searchQuotes($event)"></ion-input>
+    <ion-input type="text" placeholder="Search Invoices..." (input)="searchQuotes($event)"></ion-input>
   </ion-item>
 
   <ion-list *ngIf="!isfiltered">
-  	<ion-item *ngFor="let quote1 of quotesList" (click)="itemTapped($event, quote1)">
-  		<h2>{{quote1.author}}</h2>
-  		<p class="item-description">{{quote1.quote}}</p>
-  	</ion-item>
-	</ion-list>
+    <ion-item *ngFor="let quote1 of quotesList" (click)="itemTapped($event, quote1)">
+      <h2>Reference Number: {{quote1.referenceNumber}}</h2>
+      <p class="item-description">Maturity Date: {{quote1.maturityDate}}</p>
+      <p class="item-description">Face Value (USD): {{quote1.faceValueInUSD}}</p>
+    </ion-item>
+  </ion-list>
 
   <ion-list *ngIf="isfiltered">
-  	<ion-item *ngFor="let quote of filteredQuotes" (click)="itemTapped($event, quote)">
-  		<h2>{{quote.author}}</h2>
-  		<p class="item-description">{{quote.quote}}</p>
-  	</ion-item>
+    <ion-item *ngFor="let quote of filteredQuotes" (click)="itemTapped($event, quote)">
+      <h2>Reference Number: {{quote.referenceNumber}}</h2>
+      <p class="item-description">Maturity Date: {{quote.maturityDate}}</p>
+      <p class="item-description">Face Value (USD): {{quote.faceValueInUSD}}</p>
+    </ion-item>
   </ion-list>
 </ion-content>

@@ -7,8 +7,16 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  public tapCounter: number = 0;
   constructor(public navCtrl: NavController) {
+  }
 
+  buttonTapped() {
+    this.tapCounter++;
+  }
+
+  reset() {
+      this.tapCounter = 0;
   }
 
 }

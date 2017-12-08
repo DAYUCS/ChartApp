@@ -6,13 +6,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { QuotesListPage } from '../pages/quotes-list/quotes-list';
+import { InvoiceListPage } from '../pages/invoice-list/invoice-list';
 import { QuotesDetailPage } from '../pages/quotes-detail/quotes-detail';
 
 @NgModule({
   declarations: [
     MyApp,
-    QuotesListPage,
+    InvoiceListPage,
     QuotesDetailPage
   ],
   imports: [
@@ -23,7 +23,7 @@ import { QuotesDetailPage } from '../pages/quotes-detail/quotes-detail';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    QuotesListPage,
+    InvoiceListPage,
     QuotesDetailPage
   ],
   providers: [

@@ -1,0 +1,36 @@
+<!--
+  Generated template for the QuotesListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Invoice List</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-input type="text" placeholder="Search Invoices..." (input)="searchInvoices($event)"></ion-input>
+  </ion-item>
+
+  <ion-list *ngIf="!isfiltered">
+    <ion-item *ngFor="let invoice of invoiceList" (click)="itemTapped($event, invoice)">
+      <h2>Reference Number: {{invoice.referenceNumber}}</h2>
+      <p class="item-description">Maturity Date: {{invoice.maturityDate}}</p>
+      <p class="item-description">Face Value (USD): {{invoice.faceValueInUSD}}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="isfiltered">
+    <ion-item *ngFor="let invoice of filteredInvoices" (click)="itemTapped($event, invoice)">
+      <h2>Reference Number: {{invoice.referenceNumber}}</h2>
+      <p class="item-description">Maturity Date: {{invoice.maturityDate}}</p>
+      <p class="item-description">Face Value (USD): {{invoice.faceValueInUSD}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

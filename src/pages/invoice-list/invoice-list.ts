@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HttpClient} from '@angular/common/http';
-import {QuotesDetailPage} from '../quotes-detail/quotes-detail';
+import {InvoiceDetailPage} from '../invoice-detail/invoice-detail';
 
 class invoice {
   referenceNumber: string;
@@ -57,8 +57,8 @@ export class InvoiceListPage {
 
   itemTapped(event, invoice) {
     console.log(invoice);
-    this.navController.push(QuotesDetailPage, {
-      quote: invoice
+    this.navController.push(InvoiceDetailPage, {
+      invoice: invoice
     });
   }
 

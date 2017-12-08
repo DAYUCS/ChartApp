@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the QuotesDetailPage page.
+ * Generated class for the InvoiceDetailPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,19 +10,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-quotes-detail',
-  templateUrl: 'quotes-detail.html',
+  selector: 'page-invoice-detail',
+  templateUrl: 'invoice-detail.html',
 })
-export class QuotesDetailPage {
+export class InvoiceDetailPage {
 
-  quoteDetail: {referenceNumber:'', maturityDate:'', faceValueInUSD:''};
+  invoiceDetail: {referenceNumber:'', maturityDate:'', faceValueInUSD:''};
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.quoteDetail = navParams.get('quote');
+    this.invoiceDetail = navParams.get('invoice');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad QuotesDetailPage');
+    console.log('ionViewDidLoad InvoiceDetailPage');
   }
 
 }

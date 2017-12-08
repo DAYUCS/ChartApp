@@ -7,13 +7,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { InvoiceListPage } from '../pages/invoice-list/invoice-list';
-import { QuotesDetailPage } from '../pages/quotes-detail/quotes-detail';
+import { InvoiceDetailPage } from '../pages/invoice-detail/invoice-detail';
 
 @NgModule({
   declarations: [
     MyApp,
     InvoiceListPage,
-    QuotesDetailPage
+    InvoiceDetailPage
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,7 @@ import { QuotesDetailPage } from '../pages/quotes-detail/quotes-detail';
   entryComponents: [
     MyApp,
     InvoiceListPage,
-    QuotesDetailPage
+    InvoiceDetailPage
   ],
   providers: [
     StatusBar,

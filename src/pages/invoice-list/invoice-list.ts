@@ -1,13 +1,9 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {HttpClient} from '@angular/common/http';
+import {InvoiceApiProvider} from '../../providers/invoice-api/invoice-api';
+import {InvoiceModel} from '../../models/invoice-model';
 import {InvoiceDetailPage} from '../invoice-detail/invoice-detail';
 
-class invoice {
-  referenceNumber: string;
-  maturityDate: string;
-  faceValueInUSD: string;
-}
 /**
  * Generated class for the QuotesListPage page.
  *
@@ -22,19 +18,15 @@ class invoice {
 })
 export class InvoiceListPage {
 
-  invoiceList: Array<invoice> = [];
-  filteredInvoices: Array<invoice> = [];
+  invoiceList: Array<InvoiceModel> = [];
+  filteredInvoices: Array<InvoiceModel> = [];
   isfiltered: boolean;
 
-  constructor(public navController: NavController, public navParams: NavParams, public http: HttpClient) {
+  constructor(public navController: NavController, public navParams: NavParams, public InvoiceApiProvider: InvoiceApiProvider) {
     this.isfiltered = false;
-    this.http.get('http://10.39.107.101:9080/rest/invoice').subscribe(data => {
-        // Read the result field from the JSON response.
-        this.invoiceList = <Array<invoice>>data;
-      },
-      err => console.log("error is " + err), // error
-      () => console.log('read quotes Complete ' + this.invoiceList) // complete
-    );
+    this.InvoiceApiProvider.getInvoices().then((data: Array<InvoiceModel>) => {
+      this.invoiceList = data;
+    });
   }
 
   ionViewDidLoad() {

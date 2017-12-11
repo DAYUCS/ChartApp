@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { InvoiceListPage } from '../pages/invoice-list/invoice-list';
 import { InvoiceDetailPage } from '../pages/invoice-detail/invoice-detail';
+import { InvoiceApiProvider } from '../providers/invoice-api/invoice-api';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { InvoiceDetailPage } from '../pages/invoice-detail/invoice-detail';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    InvoiceApiProvider
   ]
 })
 export class AppModule {}

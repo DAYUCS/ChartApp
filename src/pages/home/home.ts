@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'page-home',
@@ -7,16 +8,39 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  public tapCounter: number = 0;
+  @ViewChild('barCanvas') barCanvas;
+
+  barChart: any;
+
   constructor(public navCtrl: NavController) {
+
   }
 
-  buttonTapped() {
-    this.tapCounter++;
-  }
+  ionViewDidLoad() {
 
-  reset() {
-      this.tapCounter = 0;
+    this.barChart = new Chart(this.barCanvas.nativeElement, {
+
+      type: 'horizontalBar',
+      data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "White", "Black"],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3, 10, 8],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+
+    });
+
   }
 
 }

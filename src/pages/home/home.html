@@ -1,17 +1,19 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Tap Me
+      Invoice Chart
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div>
-    <p align="center">{{tapCounter}}</p>
-  </div>
-  <ion-buttons>
-    <button ion-button block (click)="buttonTapped()">Tap me!</button>
-    <button ion-button block (click)="reset()">Reset</button>
-  </ion-buttons>
+  <ion-card>
+    <ion-card-header>
+      Bar Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

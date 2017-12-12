@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
+import { HomePage } from '../pages/home/home';
 import { InvoiceListPage } from '../pages/invoice-list/invoice-list';
 import { InvoiceDetailPage } from '../pages/invoice-detail/invoice-detail';
 import { InvoiceApiProvider } from '../providers/invoice-api/invoice-api';
@@ -13,6 +14,7 @@ import { InvoiceApiProvider } from '../providers/invoice-api/invoice-api';
 @NgModule({
   declarations: [
     MyApp,
+    HomePage,
     InvoiceListPage,
     InvoiceDetailPage
   ],
@@ -24,6 +26,7 @@ import { InvoiceApiProvider } from '../providers/invoice-api/invoice-api';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    HomePage,
     InvoiceListPage,
     InvoiceDetailPage
   ],

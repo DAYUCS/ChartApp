@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {InvoiceApiProvider} from '../../providers/invoice-api/invoice-api';
-import {InvoiceModel} from '../../models/invoice-model';
-import {InvoiceDetailPage} from '../invoice-detail/invoice-detail';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { InvoiceApiProvider } from '../../providers/invoice-api/invoice-api';
+import { InvoiceModel } from '../../models/invoice-model';
+import { InvoiceDetailPage } from '../invoice-detail/invoice-detail';
 
 /**
  * Generated class for the QuotesListPage page.
@@ -26,6 +26,7 @@ export class InvoiceListPage {
     this.isfiltered = false;
     this.InvoiceApiProvider.getInvoices().then((data: Array<InvoiceModel>) => {
       this.invoiceList = data;
+      console.log("Invoices number: " + this.invoiceList.length);
     });
   }
 

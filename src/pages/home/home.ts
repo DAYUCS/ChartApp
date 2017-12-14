@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as echarts from 'echarts';
+import { InvoiceModel } from '../../models/invoice-model';
+import { InvoiceApiProvider } from '../../providers/invoice-api/invoice-api';
 
 @Component({
   selector: 'page-home',
@@ -8,27 +10,30 @@ import * as echarts from 'echarts';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public InvoiceApiProvider: InvoiceApiProvider) {
   }
 
   ionViewDidLoad() {
+    var invoiceList: Array<InvoiceModel> = [];
+    var dates: Array<String> = [];
+    var values: Array<number> = [];
+    var numbers: Array<number> = [];
 
     const ec = echarts as any;
     const container = document.getElementById('container');
     console.log(container.offsetWidth, container.offsetHeight);
-
     const chart = ec.init(container);
 
     var option = {
-      color: ['#3398DB'],
+      color: ['#3398DB', '#db54da'],
       tooltip: {
         trigger: 'axis',
-        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-          type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        axisPointer: {
+          type: 'shadow'        // Option：'line' | 'shadow'
         }
       },
       legend: {
-        data: ['Face Value in USD']
+        data: ['Face Value in USD', 'Number of Invoices']
       },
       grid: {
         left: '3%',
@@ -36,34 +41,84 @@ export class HomePage {
         bottom: '3%',
         containLabel: true
       },
-      xAxis: {
-        type: 'value'
+      xAxis: [{
+        type: 'value',
+        name: 'Face Value in USD'
       },
+      {
+        type: 'category',
+        name: 'Number of Invoices',
+        show: false
+      }],
       yAxis: {
         type: 'category',
-        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        data: dates
       },
       series: [
         {
           name: 'Face Value in USD',
           type: 'bar',
+          stack: 'total',
           label: {
             normal: {
               show: true,
               position: 'insideRight'
             }
           },
-          data: [320, 302, 301, 334, 390, 330, 320]
+          data: values
+        },
+        {
+          name: 'Number of Invoices',
+          type: 'bar',
+          stack: 'total',
+          scale: true,
+          label: {
+            normal: {
+              show: true,
+              position: 'outsideRight'
+            }
+          },
+          data: numbers
         }
       ]
     };
-
-    chart.setOption(option);
 
     chart.on('click', function (params) {
       console.log(params);
     });
 
+    this.InvoiceApiProvider.getInvoices().then((data: Array<InvoiceModel>) => {
+      invoiceList = data;
+      console.log("Invoices number: " + invoiceList.length);
+
+      //face values and numbers be grouped by date
+      var result = [];
+      invoiceList.reduce(function (res, value) {
+        if (!res[value.maturityDate]) {
+          res[value.maturityDate] = {
+            qty: 0,
+            x: value.maturityDate,
+            y: 0
+          };
+          result.push(res[value.maturityDate]);
+        }
+        res[value.maturityDate].qty += 1;
+        res[value.maturityDate].y += value.faceValueInUSD;
+        return res;
+      }, {});
+
+      //construct data points
+      result.forEach(function (item) {
+        dates.push(item.x);
+        values.push(item.y);
+        numbers.push(item.qty);
+      });
+
+      console.log("There are " + dates.length + " dates to be shown.");
+      console.log("There are " + values.length + " values to be shown.");
+
+      chart.setOption(option);
+    });
   }
 
 }

@@ -10,12 +10,14 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class InvoiceApiProvider {
 
+  private url: string = 'http://localhost:9080/rest/invoice';
+
   constructor(public http: HttpClient) {
   }
 
   getInvoices() {
     return new Promise(resolve => {
-      this.http.get('http://10.39.107.101:9080/rest/invoice').subscribe(data => {
+      this.http.get(this.url).subscribe(data => {
         resolve(data);
       })
     })

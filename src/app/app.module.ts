@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { InvoiceDailyPage } from '../pages/invoice-daily/invoice-daily';
 import { InvoiceListPage } from '../pages/invoice-list/invoice-list';
 import { InvoiceDetailPage } from '../pages/invoice-detail/invoice-detail';
 import { InvoiceApiProvider } from '../providers/invoice-api/invoice-api';
@@ -15,6 +16,7 @@ import { InvoiceApiProvider } from '../providers/invoice-api/invoice-api';
   declarations: [
     MyApp,
     HomePage,
+    InvoiceDailyPage,
     InvoiceListPage,
     InvoiceDetailPage
   ],
@@ -27,6 +29,7 @@ import { InvoiceApiProvider } from '../providers/invoice-api/invoice-api';
   entryComponents: [
     MyApp,
     HomePage,
+    InvoiceDailyPage,
     InvoiceListPage,
     InvoiceDetailPage
   ],

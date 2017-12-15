@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import * as echarts from 'echarts';
 import { InvoiceModel } from '../../models/invoice-model';
 import { InvoiceApiProvider } from '../../providers/invoice-api/invoice-api';
+import { InvoiceDailyPage } from '../../pages/invoice-daily/invoice-daily';
 
 @Component({
   selector: 'page-home',
@@ -18,6 +19,7 @@ export class HomePage {
     var dates: Array<String> = [];
     var values: Array<number> = [];
     var numbers: Array<number> = [];
+    var navCtrl = this.navCtrl;
 
     const ec = echarts as any;
     const container = document.getElementById('container');
@@ -84,7 +86,22 @@ export class HomePage {
     };
 
     chart.on('click', function (params) {
-      console.log(params);
+      console.log("Date - " + params.name + " be tapped.");
+      var tappedDate = params.name;
+
+      var filteredInvoice = invoiceList.filter(function (row) {
+        if (row.maturityDate === tappedDate) {
+          return true
+        } else {
+          return false;
+        }
+      });
+
+      console.log(filteredInvoice.length + " invoice be selected.");
+
+      navCtrl.push(InvoiceDailyPage, {
+        filteredInvoice: filteredInvoice
+      });
     });
 
     this.InvoiceApiProvider.getInvoices().then((data: Array<InvoiceModel>) => {
@@ -114,8 +131,7 @@ export class HomePage {
         numbers.push(item.qty);
       });
 
-      console.log("There are " + dates.length + " dates to be shown.");
-      console.log("There are " + values.length + " values to be shown.");
+      console.log("There are " + dates.length + " dates and " + invoiceList.length + " invoices to be shown.");
 
       chart.setOption(option);
     });

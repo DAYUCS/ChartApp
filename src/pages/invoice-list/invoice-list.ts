@@ -31,7 +31,7 @@ export class InvoiceListPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad QuotesListPage');
+    console.log('ionViewDidLoad InvoiceListPage');
   }
 
   searchInvoices(event) {

@@ -10,7 +10,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class InvoiceApiProvider {
 
-  private url: string = 'http://localhost:9080/rest/invoice';
+  private url: string = 'http://10.39.101.14:9080/rest/invoice';
 
   constructor(public http: HttpClient) {
   }

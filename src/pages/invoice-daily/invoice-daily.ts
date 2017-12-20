@@ -19,7 +19,7 @@ export class InvoiceDailyPage {
 
   invoiceList: Array<InvoiceModel> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private navCtrl: NavController, private navParams: NavParams) {
     this.invoiceList = navParams.get('filteredInvoice');
   }
 

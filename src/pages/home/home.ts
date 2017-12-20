@@ -11,7 +11,7 @@ import { InvoiceDailyPage } from '../../pages/invoice-daily/invoice-daily';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public InvoiceApiProvider: InvoiceApiProvider) {
+  constructor(private navCtrl: NavController, private navParams: NavParams, private invApiProvider: InvoiceApiProvider) {
   }
 
   ionViewDidLoad() {
@@ -104,7 +104,7 @@ export class HomePage {
       });
     });
 
-    this.InvoiceApiProvider.getInvoices().then((data: Array<InvoiceModel>) => {
+    this.invApiProvider.getInvoices().then((data: Array<InvoiceModel>) => {
       invoiceList = data;
       console.log("Invoices number: " + invoiceList.length);
 

@@ -22,9 +22,9 @@ export class InvoiceListPage {
   filteredInvoices: Array<InvoiceModel> = [];
   isfiltered: boolean;
 
-  constructor(public navController: NavController, public navParams: NavParams, public InvoiceApiProvider: InvoiceApiProvider) {
+  constructor(private navController: NavController, private navParams: NavParams, private invApiProvider: InvoiceApiProvider) {
     this.isfiltered = false;
-    this.InvoiceApiProvider.getInvoices().then((data: Array<InvoiceModel>) => {
+    this.invApiProvider.getInvoices().then((data: Array<InvoiceModel>) => {
       this.invoiceList = data;
       console.log("Invoices number: " + this.invoiceList.length);
     });

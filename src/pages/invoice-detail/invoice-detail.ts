@@ -17,7 +17,7 @@ export class InvoiceDetailPage {
 
   invoiceDetail: {referenceNumber:'', maturityDate:'', faceValueInUSD:''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private navCtrl: NavController, private navParams: NavParams) {
     this.invoiceDetail = navParams.get('invoice');
   }
 
